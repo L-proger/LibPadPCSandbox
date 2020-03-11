@@ -1,3 +1,6 @@
 [submodule "Dependencies/LibPad"]
 	path = Dependencies/LibPad
 	url = https://github.com/L-proger/LibPad.git
+[submodule "Dependencies/LFramework"]
+	path = Dependencies/LFramework
+	url = https://github.com/L-proger/LFramework.git

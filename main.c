@@ -2,6 +2,8 @@
 #include <LibPad/PsMemCard.h>
 
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 int scanUsbDevices();
 const char* getUsbDevicePath(int id);
@@ -45,7 +47,6 @@ void readFileDescriptors(struct PsMemCard* mc) {
     }
 }
 
-
 void readFileBlocks(struct PsMemCard* mc) {
     uint8_t blockMem[1024 * 8];
     char filePathBuffer[256];
@@ -65,6 +66,23 @@ void readFileBlocks(struct PsMemCard* mc) {
         printf("Done block %d\n", i);
     }
 }
+
+void makeMemoryCardDump(struct PsMemCard* mc) {
+    uint8_t* mem = malloc(1024 * 128);
+    for(int i = 0; i <= 0x3FF; ++i){
+        printf("%d of %d\n", (i + 1), (0x400));
+        psMemCardRead(mc, i, mem + (i * 128));
+    }
+
+    FILE* file = fopen("D:/memcard/full.bin", "wb");
+    fwrite(mem, 1, 1024 * 128, file);
+    fclose(file);
+
+    free(mem);
+}
+
+
+
 
 int main() {
     struct PsIoPhy* phy;
@@ -89,8 +107,10 @@ int main() {
     memCard.port = &port;
     memCard.slot = 0x81;
 
-    readFileDescriptors(&memCard);
-    readFileBlocks(&memCard);
+    //readFileDescriptors(&memCard);
+    //readFileBlocks(&memCard);
+
+    makeMemoryCardDump(&memCard);
 
 
     return 0;

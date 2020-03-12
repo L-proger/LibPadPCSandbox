@@ -4,8 +4,8 @@ CONFIG += console c++17
 include($$PWD/Dependencies/Dependencies.pri)
 
 SOURCES += \
-    padPhy.cpp \
-    test_main.c
+    main.c \
+    padPhy.cpp
 
 HEADERS += \
     LFrameworkConfig.h

@@ -12,9 +12,3 @@ HEADERS += \
 
 LIBS += -lUser32 -lAdvapi32 -lOle32 -lWinusb -lSetupAPI
 
-
-#pragma comment(lib, )
-#pragma comment(lib,
-#pragma comment(lib, )
-#pragma comment(lib, )
-#pragma comment(lib, )
